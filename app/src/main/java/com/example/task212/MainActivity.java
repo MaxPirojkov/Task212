@@ -17,10 +17,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void initHousNumbersSpinner(){
         Integer[] houseNumbers = new Integer[50];
-        for(int i = 1; i <= 50; i++){
+        for(int i = 1; i <= houseNumbers.length; i++){
             houseNumbers[i - 1] = i;
         }
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, houseNumbers);
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, houseNumbers);
         mHouseNumberSpinner.setAdapter(adapter);
 
     }
@@ -50,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
         mCountriesSpinner.setAdapter(adapterCountries);
         mCountriesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 String[] countries = getResources().getStringArray(R.array.countries);
-                initSpinnerCities(countries[i]);
+                initSpinnerCities(countries[position]);
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -67,10 +67,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
-//        initSpinnerCountries();
-//        initSpinnerCities();
-//        initHousNumbersSpinner();
-
         mShowAddressBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
